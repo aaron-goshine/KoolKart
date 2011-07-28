@@ -30,8 +30,9 @@ li{ }
 </style>
 
 <script type="text/javascript">
-//-- I did not have the time to comment this code  if you need any help with it contact me
-//---
+//-- I will try to ad more comment as we go along 
+//-- list is the my global data source  with pulled in or serialise
+
 var list = {
     id01: {
         id: "id01",
@@ -82,8 +83,15 @@ var list = {
         prodDesc: "This Piggy Bank is perfect for big coins"
     },
 };
-//------------------------------------------------------
+/*--
+ListItemsClass is the class that  will
+be instantiated  to create  items that are 
+added tio the Shopping list
+takes two @param1 obj is reference to a DOM object
+@param2 accepts an instance of the collectionManager
+that is responsible for managing  each items in the shopping list
 
+*/
 function ListItemsClass(obj, collectionManager) {
 	
 
@@ -214,7 +222,10 @@ if (isNaN(dis.quanty.value) === false && dis.quanty.value >0 ) {
 }
 
 //-----------------------------------------------------
-
+/*
+CollectionManagerClass will be instantiated to manage all the items 
+that are add to the shopping list
+*/
 function CollectionManagerClass(objcontrolId, consoleobjId,appMainHandler) {
 	
 	appMainHandler.listCollectionManager = this;
@@ -403,16 +414,20 @@ return;
 
 }
 //---------------------------------------------
-//-- SelectionsClass  items 
-
+/*--
+ SelectionsClass is the class that  will
+be instantiated  to create  items that are 
+added tio the Shopping selections
+takes two @param1 objValue  accepts and object lateral from  the global data source
+@param2 accepts an instance of the collectionManager
+that is responsible for managing  each items in the Shopping selections
+*/
 
 function SelectionsClass(objValue, collectionManager) {
  
 	this.id = objValue.id ;
-	
     this.selectionItem = document.createElement('li');
     this.selectionItem.id = objValue.id + "_list";
-
     this.imageItem = document.createElement('img');
     this.imageItem.src = "http://www.goshine-design.co.uk/expsite/images/thum-" + objValue.imageName;
     this.selectionItem.appendChild(this.imageItem);
@@ -430,13 +445,7 @@ function SelectionsClass(objValue, collectionManager) {
    this.button = document.createElement('input');
    this.button.type ='button' ;
    this.button.value ="add to list";
-   this.selectionItem.appendChild(this.button);
-	
-	
-	
-	   
-	    
-	 
+   this.selectionItem.appendChild(this.button); 
 
     this.selectionItem.onclick = function () {
         collectionManager.addItem(objValue.id);
@@ -480,7 +489,9 @@ function ListItemsGroupManagerClass(tagetId,collectionData, parallelCollectionMa
 	   }
 	
 }
+
 function ApplicationClass (ListDivId,totalValueId,SelectableItemsId){
+"use strict";
 	this.name = "Goshine Neat Shopping List";
 	this.version = "version 0.1";
 	this.utilCreateNode = function(element,textContent){
