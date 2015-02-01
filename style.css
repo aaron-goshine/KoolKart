@@ -1,25 +1,120 @@
 @charset "UTF-8";
 /* CSS Document */
-*{padding:0px; margin:0px; list-style:none; font-family:Verdana, Geneva, sans-serif; font-size:98%}
-li{ }
-#selectList { width:400px; background-color:#F93; }
-#selectList li {border-bottom:1px solid black; width:80px; margin-bottom:5px; margin-right:10px;
- float:left; cursor:pointer; height:140px; border:2px solid gray; text-align:center; padding:10px; }
-#selectList li img{ display:inline;}
-#selectList li img{}
-.listname{ font-size:10px;}
-.price{ font-size:12px}
-#mainList {border-left:2px solid Gray; border-right:2px solid Gray; border-top:2px solid Gray; width:250px;}
-#mainList li {border-bottom:2px solid Gray; width:240px; padding-left:10px; padding-bottom:10px; position:relative; background-color:Cornsilk;}
-#mainList li h4 {padding:0px; margin:0px 0px 5px 0px;}
-#mainList li input { display:inline-block; margin-right:5px;}
-#mainList li span {display:inline-block; width:250px;}
-#mainList li img{display:inline-block; position:absolute; right:5px; top:5px;cursor:pointer;}
-.qntlable{display:inline-block;}
-.qntField{display:inline-block; width:60px;}
+* {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 98%
+}
+
+li {
+}
+
+#selectList {
+    width: 400px;
+    background-color: #F93;
+}
+
+#selectList li {
+    border-bottom: 1px solid black;
+    width: 80px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    float: left;
+    cursor: pointer;
+    height: 140px;
+    border: 2px solid gray;
+    text-align: center;
+    padding: 10px;
+}
+
+#selectList li img {
+    display: inline;
+}
+
+#selectList li img {
+}
+
+.listname {
+    font-size: 10px;
+}
+
+.price {
+    font-size: 12px
+}
+
+#mainList {
+    border-left: 2px solid Gray;
+    border-right: 2px solid Gray;
+    border-top: 2px solid Gray;
+    width: 250px;
+}
+
+#mainList li {
+    border-bottom: 2px solid Gray;
+    width: 240px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    background-color: Cornsilk;
+}
+
+#mainList li h4 {
+    padding: 0px;
+    margin: 0px 0px 5px 0px;
+}
+
+#mainList li input {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#mainList li span {
+    display: inline-block;
+    width: 250px;
+}
+
+#mainList li img {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+}
+
+.qntlable {
+    display: inline-block;
+}
+
+.qntField {
+    display: inline-block;
+    width: 60px;
+}
+
 /* -- */
-.colom{ margin:20px 0px 0px 20px; float:left; width:350px;  }
-.colomone{ margin:20px 0px 0px 20px; float:left; width:260px;}
-#bettingTotal{ font-size:12px; font-weight:bold;}
-.note{ font-size:10px;color:gray;}
-.hlightBg{ background-color:#FC0!important;}
+.colom {
+    margin: 20px 0px 0px 20px;
+    float: left;
+    width: 350px;
+}
+
+.colomone {
+    margin: 20px 0px 0px 20px;
+    float: left;
+    width: 260px;
+}
+
+#bettingTotal {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.note {
+    font-size: 10px;
+    color: gray;
+}
+
+.hlightBg {
+    background-color: #FC0 !important;
+}
