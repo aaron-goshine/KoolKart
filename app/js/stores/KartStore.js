@@ -9,9 +9,9 @@
  * TodoStore
  */
 
-var AppDispatcher = require('../dispatcher/AppDispatcher');
+var AppDispatcher = require('js/dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
-var TodoConstants = require('../constants/KartConstants');
+var TodoConstants = require('js/constants/KartConstants');
 var merge = require('react/lib/merge');
 
 var CHANGE_EVENT = 'change';

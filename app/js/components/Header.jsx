@@ -11,7 +11,7 @@
 
 var React = require('react');
 var TodoActions = require('../actions/KartActions');
-var TodoTextInput = require('./TodoTextInput.react.js');
+var TodoTextInput = require('../components/TodoTextInput.jsx');
 
 var Header = React.createClass({
 

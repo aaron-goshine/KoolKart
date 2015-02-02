@@ -13,11 +13,10 @@
  * This component operates as a "Controller-View".  It listens for changes in
  * the TodoStore and passes the new data to its children.
  */
-
-var Footer = require('./Footer.react.js');
-var Header = require('./Header.react.js');
-var MainSection = require('./MainSection.react.js');
 var React = require('react');
+var Footer = require('./Footer.jsx');
+var Header = require('./Header.jsx');
+var MainSection = require('./MainSection.jsx');
 var TodoStore = require('../stores/KartStore');
 
 /**

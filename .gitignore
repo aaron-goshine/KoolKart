@@ -1,6 +1,8 @@
 /js/bundle.js
 /js/bundle.min.js
 .idea
-dist
+dist/bundle.js
+dist/bundle.min.js
+dist/index.html
 node_modules
 npm-debug.log

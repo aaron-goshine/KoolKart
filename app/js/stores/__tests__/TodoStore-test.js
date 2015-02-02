@@ -15,7 +15,7 @@ jest.dontMock('react/lib/merge');
 
 describe('TodoStore', function() {
 
-  var TodoConstants = require('../../constants/KartConstants');
+  var TodoConstants = require('js/constants/KartConstants');
 
   // mock actions inside dispatch payloads
   var actionTodoCreate = {
@@ -34,8 +34,8 @@ describe('TodoStore', function() {
   };
 
   beforeEach(function() {
-    AppDispatcher = require('../../dispatcher/AppDispatcher');
-    TodoStore = require('../KartStore');
+    AppDispatcher = require('js/dispatcher/AppDispatcher');
+    TodoStore = require('js/stores/KartStore');
     callback = AppDispatcher.register.mock.calls[0][0];
   });
 

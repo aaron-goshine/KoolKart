@@ -9,8 +9,8 @@
  * TodoActions
  */
 
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var TodoConstants = require('../constants/KartConstants');
+var AppDispatcher = require('js/dispatcher/AppDispatcher');
+var TodoConstants = require('js/constants/KartConstants');
 
 var TodoActions = {
 

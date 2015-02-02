@@ -12,7 +12,7 @@
 var React = require('react');
 var ReactPropTypes = React.PropTypes;
 var TodoActions = require('../actions/KartActions');
-var TodoItem = require('./TodoItem.react.js');
+var TodoItem = require('../components/TodoItem.jsx');
 
 var MainSection = React.createClass({
 

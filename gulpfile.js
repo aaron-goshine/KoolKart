@@ -1,89 +1,92 @@
-var browserify = require('browserify');
-var concat = require('gulp-concat');
-var del = require('del');
-var ES6Shim = require('es6-shim');
-var fs = require('fs');
-var gReact = require('gulp-react');
-var gReplace = require('gulp-replace');
+'use strict';
+
 var gulp = require('gulp');
-var gulpIf = require('gulp-if');
-var gutil = require('gulp-util');
-var htmlMin = require('gulp-htmlmin');
-var less = require('gulp-less');
-var minifyCSS = require('gulp-minify-css');
-var plumber = require('gulp-plumber');
+var plugins = require('gulp-load-plugins')();
+var serverPort = 8080;
+var livereloadPort = 35729;
 var reactify = require('reactify');
-var source = require('vinyl-source-stream');
-var streamify = require('gulp-streamify');
-var uglify = require('gulp-uglify');
-var watchify = require('watchify');
+var source = require("vinyl-source-stream");
+var browserify = require('browserify');
+var to5ify= require('6to5ify');
 
-var dev = true;
+//============= server
+gulp.task('connectServer', plugins.serve({
+  root: 'app',
+  port: serverPort,
+  middleware: require('connect-livereload')({port: livereloadPort})
+}));
 
-var sourcePaths = {
-  script: __dirname + '/js/**',
-  css: __dirname + '/css/**'
-};
-
-var destPaths = {
-  script: __dirname + '/dist/js/',
-  css: __dirname + '/dist/css/'
-};
-
-
-gulp.task('clean', function (callback) {
-  del([__dirname + '/dist/'], callback);
+gulp.task("broswer", ['connectServer'], function() {
+  gulp.src("./dist/index.html")
+    .pipe(plugins.open("", {url: "http://localhost:" + serverPort}));
 });
 
+gulp.task('liveServer', function() {
+  plugins.livereload.listen(livereloadPort);
+});
 
-//gulp.task('lib', function () {
-//  return gulp.src('src/*.js')
-//    .pipe(gReact({harmony: true}))
-//    .pipe(gReplace(/__DEV__/g, false))
-//    .pipe(gulp.dest('lib'));
-//
-//})
-
-gulp.task('scripts', function () {
-  var watchlist = Object.assign(watchify.args, {
-    debug: true,
-    extensions: ['.js', '.jsx', '.json']
+gulp.task('watch', function() {
+  plugins.watch(['./dist/*.html', './dist/css/*.css', './dist/js/*.js', './dist/images/**/*'], function() {
+    plugins.livereload.changed("file", livereloadPort);
   });
+});
 
+//============= end server
+gulp.task('less', function() {
+  gulp.src('app/css/less/*.less')
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.less())
+    .on('error', console.error.bind('error'))
+    .pipe(plugins.sourcemaps.write('maps'))
+    .pipe(gulp.dest('dist/css'));
+});
 
-  var bundler = browserify(['./js/app.js'], watchlist);
-  console.log(bundler);
-  return ;
-  bundler = watchify(bundler);
-
-
-
-  bundler.transform('reactify', {es6: true});
-  bundler.on('update', rebundle);
-  bundler.on('log', gutil.log.bind(gutil, 'Rebundle'))
-
-  return rebundle();
-
-  function rebundle() {
-    return bundler.bundle()
-      .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-      .pipe(source('bundle.js'))
-      .pipe(streamify(uglify()))
-      .pipe(gulp.dest(destPaths.scripts));
-
-  }
-
+gulp.task('watchless', function() {
+  plugins.watch('app/css/less/*.less', function() {
+    gulp.start('less');
+  })
 });
 
 
-gulp.task('browserify', function () {
-  return browserify(browserifyConfig)
-    .bundle()
-    .pipe(source('Flux.js'))
-    .pipe(gulp.dest('./dist/'))
+gulp.task('scripts', function() {
+
+  var bundle =  browserify('./app/js/app.jsx',{ debug: true });
+  bundle.transform(reactify);
+  bundle.transform(to5ify);
+  bundle.on("error", function (err) { console.log("Error : " + err.message); });
+  return bundle.bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('publish', ['clean', 'default']);
-gulp.task('default', ['scripts']);
+gulp.task('watchscript', function() {
+  plugins.watch('./app/js/**', function() {
+    gulp.start('scripts');
+  })
+});
 
+
+browserify()
+  
+  .require("./script.js", { entry: true })
+  
+
+
+
+//Minify javascript files
+gulp.task('uglify', function() {
+  gulp.src(['app/js/*.js', '!app/js/*.min.js'])
+    .pipe(plugins.uglify())
+    .pipe(plugins.rename({suffix: '.min'}))
+    .pipe(gulp.dest('app/js'))
+});
+
+gulp.task('cssmin', function() {
+  gulp.src(['app/css/*.css', '!css/*.min.css'])
+    .pipe(plugins.cssmin())
+    .pipe(plugins.rename({suffix: '.min'}))
+    .pipe(gulp.dest('app/css'));
+});
+
+gulp.task('default', ['connectServer', 'broswer', 'liveServer', 'watch', 'watchless', 'watchscript']);
 
