@@ -1,20 +1,26 @@
-var React = require('react');
+import React from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import MainSection from './components/MainSection';
 
 var KartApp = React.createClass({
   render() {
     return (
-      <h1> Hello</h1>
+      <section>
+        <Header/>
+        <MainSection/>
+        <Footer/>
+      </section>
     )
-
   }
-
 });
 
-//require('./components/KartApp');
 React.renderComponent(
   <KartApp />,
   document.getElementById('kartApp')
 );
+
+
 
 
 

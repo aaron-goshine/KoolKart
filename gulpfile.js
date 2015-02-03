@@ -48,7 +48,10 @@ gulp.task('watchLess', function() {
 
 gulp.task('scripts', function() {
 
-  var bundle = browserify('./app/js/app.jsx', {debug: true});
+  var bundle = browserify('./app/js/app.jsx', {
+    debug: true,
+    extensions: ['.js', '.jsx', '.json']
+  });
   bundle.transform(reactify);
   bundle.transform(to5ify);
   bundle.on("error", function(err) {
