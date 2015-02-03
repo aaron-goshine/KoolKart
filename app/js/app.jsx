@@ -22,5 +22,3 @@ React.renderComponent(
 
 
 
-
-

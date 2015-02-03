@@ -30,24 +30,40 @@ gulp.task('watch', function() {
   });
 });
 
+gulp.task('html', function() {
+  gulp.src(['./index.html'])
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('fonts', function() {
+  gulp.src(['./app/fonts/*'])
+    .pipe(gulp.dest('dist/fonts/'));
+});
+
+
+gulp.task('watchHtml', function() {
+  plugins.watch(['./index.html'], function() {
+    gulp.start('html');
+  })
+});
+
+
 gulp.task('less', function() {
   gulp.src(['app/css/less/*.less', 'app/css/**/*.css'])
     .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.concat('styles.css'))
     .pipe(plugins.less())
-    .on('error', console.error.bind('error'))
     .pipe(plugins.sourcemaps.write('maps'))
     .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('watchLess', function() {
-  plugins.watch(['app/css/**/*.less', 'app/css/**/*.css'], function() {
+  plugins.watch(['./app/css/less/*.less', './app/css/**/*.css'], function() {
     gulp.start('less');
   })
 });
 
-
 gulp.task('scripts', function() {
-
   var bundle = browserify('./app/js/app.jsx', {
     debug: true,
     extensions: ['.js', '.jsx', '.json']
@@ -83,5 +99,14 @@ gulp.task('cssmin', function() {
     .pipe(gulp.dest('app/css'));
 });
 
-gulp.task('default', ['connectServer', 'browser', 'liveServer', 'watch', 'watchLess', 'watchScript']);
+gulp.task('default',
+  [
+    'connectServer',
+    'browser',
+    'liveServer',
+    'watch',
+    'watchLess',
+    'watchScript',
+    'watchHtml',
+    'fonts']);
 
