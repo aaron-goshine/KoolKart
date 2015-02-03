@@ -31,7 +31,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('less', function() {
-  gulp.src('app/css/less/*.less')
+  gulp.src(['app/css/less/*.less', 'app/css/**/*.css'])
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.less())
     .on('error', console.error.bind('error'))
@@ -40,7 +40,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('watchLess', function() {
-  plugins.watch('app/css/less/*.less', function() {
+  plugins.watch(['app/css/**/*.less', 'app/css/**/*.css'], function() {
     gulp.start('less');
   })
 });

@@ -26,9 +26,7 @@ li {
   text-align: left;
 }
 li label {
-  font-size: bold;
+    font-size: 12px;
   width: 100px;
   display: inline-block;
 }
-
-/*# sourceMappingURL=maps/style.css.map */
