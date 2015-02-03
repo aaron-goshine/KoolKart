@@ -9,7 +9,6 @@ var Header = React.createClass({
       </header>
     );
   }
-
 });
 
 export default Header;

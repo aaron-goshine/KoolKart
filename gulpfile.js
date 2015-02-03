@@ -47,7 +47,6 @@ gulp.task('watchHtml', function() {
   })
 });
 
-
 gulp.task('less', function() {
   gulp.src(['app/css/less/*.less', 'app/css/**/*.css'])
     .pipe(plugins.sourcemaps.init())
@@ -108,5 +107,6 @@ gulp.task('default',
     'watchLess',
     'watchScript',
     'watchHtml',
-    'fonts']);
+    'fonts'
+  ]);
 
