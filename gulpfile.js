@@ -7,16 +7,15 @@ var livereloadPort = 35729;
 var reactify = require('reactify');
 var source = require("vinyl-source-stream");
 var browserify = require('browserify');
-var to5ify= require('6to5ify');
+var to5ify = require('6to5ify');
 
-//============= server
 gulp.task('connectServer', plugins.serve({
-  root: 'app',
+  root: 'dist',
   port: serverPort,
   middleware: require('connect-livereload')({port: livereloadPort})
 }));
 
-gulp.task("broswer", ['connectServer'], function() {
+gulp.task("browser", ['connectServer'], function() {
   gulp.src("./dist/index.html")
     .pipe(plugins.open("", {url: "http://localhost:" + serverPort}));
 });
@@ -31,7 +30,6 @@ gulp.task('watch', function() {
   });
 });
 
-//============= end server
 gulp.task('less', function() {
   gulp.src('app/css/less/*.less')
     .pipe(plugins.sourcemaps.init())
@@ -41,7 +39,7 @@ gulp.task('less', function() {
     .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('watchless', function() {
+gulp.task('watchLess', function() {
   plugins.watch('app/css/less/*.less', function() {
     gulp.start('less');
   })
@@ -50,28 +48,22 @@ gulp.task('watchless', function() {
 
 gulp.task('scripts', function() {
 
-  var bundle =  browserify('./app/js/app.jsx',{ debug: true });
+  var bundle = browserify('./app/js/app.jsx', {debug: true});
   bundle.transform(reactify);
   bundle.transform(to5ify);
-  bundle.on("error", function (err) { console.log("Error : " + err.message); });
+  bundle.on("error", function(err) {
+    console.log("Error : " + err.message);
+  });
   return bundle.bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('watchscript', function() {
+gulp.task('watchScript', function() {
   plugins.watch('./app/js/**', function() {
     gulp.start('scripts');
   })
 });
-
-
-browserify()
-  
-  .require("./script.js", { entry: true })
-  
-
-
 
 //Minify javascript files
 gulp.task('uglify', function() {
@@ -88,5 +80,5 @@ gulp.task('cssmin', function() {
     .pipe(gulp.dest('app/css'));
 });
 
-gulp.task('default', ['connectServer', 'broswer', 'liveServer', 'watch', 'watchless', 'watchscript']);
+gulp.task('default', ['connectServer', 'browser', 'liveServer', 'watch', 'watchLess', 'watchScript']);
 
