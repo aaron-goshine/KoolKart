@@ -9,6 +9,11 @@ var source = require("vinyl-source-stream");
 var browserify = require('browserify');
 var to5ify = require('6to5ify');
 
+function swallowError(error) {
+  console.log(error.toString());
+  this.emit('end');
+}
+
 gulp.task('connectServer', plugins.serve({
   root: 'dist',
   port: serverPort,
@@ -51,7 +56,9 @@ gulp.task('less', function() {
   gulp.src(['app/css/less/*.less', 'app/css/**/*.css'])
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.concat('styles.css'))
+    .on('error', swallowError)
     .pipe(plugins.less())
+    .on('error', swallowError)
     .pipe(plugins.sourcemaps.write('maps'))
     .pipe(gulp.dest('dist/css'));
 });
@@ -67,11 +74,11 @@ gulp.task('scripts', function() {
     debug: true,
     extensions: ['.js', '.jsx', '.json']
   });
+  bundle.on('error', swallowError);
   bundle.transform(reactify);
+  bundle.on('error', swallowError);
   bundle.transform(to5ify);
-  bundle.on("error", function(err) {
-    console.log("Error : " + err.message);
-  });
+  bundle.on('error', swallowError);
   return bundle.bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./dist/js/'));

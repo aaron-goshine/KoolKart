@@ -3,16 +3,18 @@ import {EventEmitter} from 'events';
 import KartConstants from '../constants/KartConstants';
 import merge from 'react/lib/merge';
 
+//-- mock data
+import items from '../mock/items.js';
+
 var CHANGE_EVENT = 'change';
 
-var _Items = {};
+var _Items = items;
 
 function init() {
 
 }
 
 var KartStore = merge(EventEmitter.prototype, {
-
   getAll: function() {
     return _Items;
   },
@@ -32,18 +34,15 @@ var KartStore = merge(EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload) {
   var action = payload.action;
-  var text;
-
-  switch(action.actionType) {
+  switch (action.actionType) {
     case KartConstants.INIT:
       console.log("Application has initialized");
       break;
     default:
       return true;
   }
-
   KartStore.emitChange();
-  return true; 
+  return true;
 });
 
 module.exports = KartStore;
