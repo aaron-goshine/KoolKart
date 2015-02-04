@@ -1,9 +1,5 @@
-/js/bundle.js
-/js/bundle.min.js
 .idea
-dist/bundle.js
-dist/bundle.min.js
-dist/index.html
+dist/
 node_modules
 npm-debug.log
 .DS_Store
