@@ -14,12 +14,9 @@ function init() {
 
 }
 
-var KartStore = merge(EventEmitter.prototype, {
+var KoolStore = merge(EventEmitter.prototype, {
   getAll() {
     return _Items;
-  },
-  getTotalCost() {
-
   },
   emitChange() {
     this.emit(CHANGE_EVENT);
@@ -43,8 +40,8 @@ AppDispatcher.register((payload) => {
     default:
       return true;
   }
-  KartStore.emitChange();
+  KoolStore.emitChange();
   return true;
 });
 
-module.exports = KartStore;
+module.exports = KoolStore;

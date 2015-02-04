@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Panel from './components/Panel';
-import Basket from './components/KartList';
+import KoolProductPanel from './components/KoolProductPanel';
+import KartList from './components/KartList';
 import KartActionCreator from './actions/KartActionCreator'
 
 var KartApp = React.createClass({
@@ -14,8 +14,8 @@ var KartApp = React.createClass({
       <section className="kart-wrapper">
         <Header/>
         <section id="main"  className="main-section">
-          <Panel/>
-          <Basket/>
+          <KoolProductPanel/>
+          <KartList/>
         </section>
         <Footer/>
       </section>

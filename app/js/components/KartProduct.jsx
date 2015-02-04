@@ -1,7 +1,8 @@
 import React from 'react';
 import KartActionCreator from '../actions/KartActionCreator';
+import format from 'string-format';
 
-var Product = React.createClass({
+var KoolProduct = React.createClass({
   getInitialState() {
     return {}
   },
@@ -10,15 +11,14 @@ var Product = React.createClass({
   },
   render() {
     return (
-      <div id={this.state.id} >
+      <div id={this.state.id} title={this.state.title} className="product-item">
         <img src={this.state.imageName}/>
         <ul>
-          <li>Price : {this.state.value}</li>
+          <li>Price : {"£ " + this.state.value}</li>
           <li>{this.state.name}</li>
-          <li>{this.state.title}</li>
           <li>{this.state.prodDesc}</li>
         </ul>
-        <button onClick={this._onClick}>Add To List </button>
+        <button className="btn" onClick={this._onClick}>Add To List </button>
       </div>
     );
   },
@@ -28,4 +28,4 @@ var Product = React.createClass({
   }
 });
 
-export default  Product;
+export default  KoolProduct;

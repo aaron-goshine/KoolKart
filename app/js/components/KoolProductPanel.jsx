@@ -1,15 +1,15 @@
 import React from 'react';
-import KartStore from '../stores/KartStore';
-import Product from '../components/Product';
-var Panel = React.createClass({
+import KoolStore from '../stores/KoolStore';
+import KoolProduct from '../components/KoolProduct';
+var KoolProductPanel = React.createClass({
   getInitialState() {
     return this._getStateFromStore();
   },
   componentWillMount() {
-    KartStore.addChangeListener(this._onChange);
+    KoolStore.addChangeListener(this._onChange);
   },
   componentWillUnmount() {
-    KartStore.removeChangeListener(this._onChange);
+    KoolStore.removeChangeListener(this._onChange);
   },
   render() {
     return (
@@ -22,9 +22,9 @@ var Panel = React.createClass({
     )
   },
   _renderItem(items) {
-    
+
     return items.map(item => {
-      return <Product item={item} />
+      return <KoolProduct item={item} />
     })
   },
   _onChange() {
@@ -32,8 +32,8 @@ var Panel = React.createClass({
   },
   _getStateFromStore() {
     return {
-      items: KartStore.getAll()
+      items: KoolStore.getAll()
     }
   }
 });
-export default  Panel;
+export default   KoolProductPanel;
