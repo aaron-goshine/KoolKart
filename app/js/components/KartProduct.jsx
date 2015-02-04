@@ -23,8 +23,7 @@ var KoolProduct = React.createClass({
     );
   },
   _onClick() {
-    console.log(this.state.id);
-    KartActionCreator.addItem(this.state.id);
+
   }
 });
 

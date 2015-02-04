@@ -1,6 +1,7 @@
 import React from 'react';
 import KartActionCreator from '../actions/KartActionCreator';
 import format from 'string-format';
+import KoolStore from '../stores/KoolStore';
 
 var KoolProduct = React.createClass({
   getInitialState() {
@@ -23,8 +24,8 @@ var KoolProduct = React.createClass({
     );
   },
   _onClick() {
-    console.log(this.state.id);
-    KartActionCreator.addItem(this.state.id);
+    var item = KoolStore.getItemById(this.state.id);
+    KartActionCreator.addToKart(item);
   }
 });
 

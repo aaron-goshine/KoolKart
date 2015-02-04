@@ -7,10 +7,10 @@ var KoolActions = {
       actionType: KartConstants.INIT
     });
   },
-  addToKart(id) {
+  addToKart(item) {
     AppDispatcher.handleViewAction({
       actionType: KartConstants.ADD_TO_KART,
-      id: id
+      item: item
     });
   },
   removeFromKart(id) {

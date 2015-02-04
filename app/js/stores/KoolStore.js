@@ -2,6 +2,7 @@ import AppDispatcher  from '../dispatcher/AppDispatcher' ;
 import {EventEmitter} from 'events';
 import KartConstants from '../constants/KartConstants';
 import merge from 'react/lib/merge';
+import _ from 'lodash';
 
 //-- mock data
 import items from '../mock/items.js';
@@ -17,6 +18,9 @@ function init() {
 var KoolStore = merge(EventEmitter.prototype, {
   getAll() {
     return _Items;
+  },
+  getItemById(id) {
+    return _.filter(_Items, {id: id})[0];
   },
   emitChange() {
     this.emit(CHANGE_EVENT);
