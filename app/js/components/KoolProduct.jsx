@@ -19,7 +19,7 @@ var KoolProduct = React.createClass({
           <li>{this.state.name}</li>
           <li>{this.state.prodDesc}</li>
         </ul>
-        <button className="btn" onClick={this._onClick}>Add To List </button>
+        <button className="btn btn-default" onClick={this._onClick}>Add To List </button>
       </div>
     );
   },

@@ -3,27 +3,22 @@ import KartActionCreator from '../actions/KartActionCreator';
 import format from 'string-format';
 
 var KoolProduct = React.createClass({
-  getInitialState() {
-    return {}
-  },
-  componentWillReceiveProps(props) {
-    this.setState(props.item);
-  },
   render() {
     return (
-      <div id={this.state.id} title={this.state.title} className="product-item">
-        <img src={this.state.imageName}/>
+      <div id={this.props.item.id} title={this.props.item.title} className="product-item">
+        <img src={this.props.item.imageName}/>
         <ul>
-          <li>Price : {"£ " + this.state.value}</li>
-          <li>{this.state.name}</li>
-          <li>{this.state.prodDesc}</li>
+          <li>Price : {"£ " + this.props.item.value}</li>
+          <li>Quantity : {this.props.item.quantity}</li>
+          <li>{this.props.item.name}</li>
+          <li>{this.props.item.prodDesc}</li>
         </ul>
-        <button className="btn" onClick={this._onClick}>Add To List </button>
+        <button className="btn btn-remove" onClick={this._onClick}>Remove item</button>
       </div>
     );
   },
   _onClick() {
-
+    KartActionCreator.removeFromKart(this.props.item.id);
   }
 });
 

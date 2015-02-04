@@ -15,29 +15,35 @@ var KartStore = merge(EventEmitter.prototype, {
   getTotalCost() {
     var total = 0;
     for (var i = 0; i < _Items.length; i++) {
-      var productValue = Number(_Items[i].value) * Number(_Items[i].count);
+      var productValue = Number(_Items[i].value) * Number(_Items[i].quantity);
       total += productValue;
     }
-    return Math.round(total);
+    return total;
   },
   addItem(item) {
     var tracker = false;
-
     for (var i = 0; i < _Items.length; i++) {
       if (_Items[i].id === item.id) {
         tracker = true;
-        _Items[i].count++;
+        _Items[i].quantity++;
       }
     }
-
     if (!tracker) {
-      item.count = 1;
+      item.quantity = 1;
       _Items.push(item);
     }
 
   },
-  removeItem(item) {
-    _Items.push(item);
+  removeItem(id) {
+    for (var i = 0; i < _Items.length; i++) {
+      if (_Items[i].id === id) {
+        if (_Items[i].quantity > 1) {
+          _Items[i].quantity--;
+        } else if (_Items[i].quantity >= 1) {
+          _Items.splice(i, 1)
+        }
+      }
+    }
   },
   emitChange() {
     this.emit(CHANGE_EVENT);
@@ -58,8 +64,12 @@ AppDispatcher.register((payload) => {
       KartStore.addItem(action.item);
       break;
     default:
+    case KartConstants.REMOVE_FROM_KART:
+      KartStore.removeItem(action.id);
+      break;
       return true;
   }
+
   KartStore.emitChange();
   return true;
 });

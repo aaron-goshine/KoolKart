@@ -8,7 +8,7 @@ export default [
     name: 'Magical Mix',
     title: 'Magical Mix',
     value: "3.60",
-    imageName: "http://dummyimage.com/80/f00/000",
+    imageName: "http://dummyimage.com/80/0c0/0c0",
     prodDesc: "Perfect Description"
   },
   {
@@ -16,7 +16,7 @@ export default [
     name: 'Empty Box',
     title: 'Empty Box',
     value: "9.60",
-    imageName: "http://dummyimage.com/80/f00/000",
+    imageName: "http://dummyimage.com/80/0c0/0c0",
     prodDesc: "Less is more"
   },
   {
@@ -24,15 +24,15 @@ export default [
     name: 'Good Gears',
     title: 'Good Gears',
     value: "101.60",
-    imageName: "http://dummyimage.com/80/f00/000",
+    imageName: "http://dummyimage.com/80/0c0/0c0",
     prodDesc: "Get in the right gear"
   },
   {
     id: "id04",
-    name: "Loud Alarmers",
-    title: "Loud Alarmers",
+    name: "Loud Alarms",
+    title: "Loud Alarms",
     value: "5.60",
-    imageName: "http://dummyimage.com/80/f00/000",
+    imageName: "http://dummyimage.com/80/0c0/0c0",
     prodDesc: "Loud is always better"
   },
   {
@@ -40,15 +40,15 @@ export default [
     name: 'Perfect Gift',
     title: 'Perfect Gift',
     value: "1.60",
-    imageName: "http://dummyimage.com/80/f00/000",
-    prodDesc: "A perfect Gift is what you expectected"
+    imageName: "http://dummyimage.com/80/0c0/0c0",
+    prodDesc: "A perfect Gift is what you expected"
   },
   {
     id: "id06",
     name: "Piggy Bank",
     title: "Piggy Bank",
     value: "5.60",
-    imageName: "http://dummyimage.com/80/f00/000",
+    imageName: "http://dummyimage.com/80/0c0/0c0",
     prodDesc: "This Piggy Bank is perfect for big coins"
   }
 ];
