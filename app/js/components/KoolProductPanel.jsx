@@ -1,6 +1,8 @@
 import React from 'react';
 import KoolStore from '../stores/KoolStore';
 import KoolProduct from '../components/KoolProduct';
+import  _ from 'lodash';
+
 var KoolProductPanel = React.createClass({
   getInitialState() {
     return this._getStateFromStore();
@@ -13,18 +15,22 @@ var KoolProductPanel = React.createClass({
   },
   render() {
     return (
-      <section className="panel">
-        <header>Choose items </header>
-        <div>
+      <div className="panel-custom">
+        <header>
+          <h2>Inspired by Your Shopping Trends</h2>
+          <p>Your Recently Viewed Items and Featured Recommendations</p>
+        </header>
         {this._renderItem(this.state.items)}
-        </div>
-      </section>
+      </div>
     )
   },
   _renderItem(items) {
-
-    return items.map(item => {
-      return <KoolProduct item={item} />
+    var table = _.chunk(items, 3);
+    return table.map(item => {
+      return <div className="row"> {
+        item.map(unit => {
+          return <KoolProduct  className="col-xs-4 product-unit" item={unit} />;
+        })}</div>
     })
   },
   _onChange() {

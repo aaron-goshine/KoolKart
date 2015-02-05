@@ -4,7 +4,7 @@ var Header = React.createClass({
 
   render() {
     return (
-      <header id="header">
+      <header id="header" className="col-md-24">
         <h1>Kool Kart </h1>
       </header>
     );

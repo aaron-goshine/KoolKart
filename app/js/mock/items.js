@@ -33,7 +33,7 @@ export default [
     title: "Loud Alarms",
     value: "5.60",
     imageName: "http://dummyimage.com/80/0c0/0c0",
-    prodDesc: "Loud is always better"
+    prodDesc: "Loud is always better fo a laugh"
   },
   {
     id: "id05",

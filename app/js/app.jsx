@@ -11,8 +11,7 @@ var KartApp = React.createClass({
   },
   render() {
     return (
-      <section className="kart-wrapper">
-        <Header/>
+      <section >
         <section id="main"  className="main-section">
           <KoolProductPanel/>
           <KartList/>
@@ -27,6 +26,4 @@ React.renderComponent(
   <KartApp />,
   document.getElementById('kartApp')
 );
-
-
 

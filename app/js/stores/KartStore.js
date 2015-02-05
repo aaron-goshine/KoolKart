@@ -18,7 +18,8 @@ var KartStore = merge(EventEmitter.prototype, {
       var productValue = Number(_Items[i].value) * Number(_Items[i].quantity);
       total += productValue;
     }
-    return total;
+    //TODO currencey formating
+    return Math.round(total * 100) / 100;
   },
   addItem(item) {
     var tracker = false;

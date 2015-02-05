@@ -12,14 +12,14 @@ var KoolProduct = React.createClass({
   },
   render() {
     return (
-      <div id={this.state.id} title={this.state.title} className="product-item">
+      <div id={this.state.id} title={this.state.title} {...this.props}>
         <img src={this.state.imageName}/>
         <ul>
           <li>Price : {"£ " + this.state.value}</li>
           <li>{this.state.name}</li>
           <li>{this.state.prodDesc}</li>
         </ul>
-        <button className="btn btn-default" onClick={this._onClick}>Add To List </button>
+        <button className="btn btn-default" onClick={this._onClick}>Add to list </button>
       </div>
     );
   },
