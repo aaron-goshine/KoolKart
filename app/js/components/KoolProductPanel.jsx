@@ -34,9 +34,11 @@ var KoolProductPanel = React.createClass({
     })
   },
   _onChange() {
+    console.log("the store have changed");
     this.setState(this._getStateFromStore());
   },
   _getStateFromStore() {
+    console.log(KoolStore.getAll());
     return {
       items: KoolStore.getAll()
     }
