@@ -4,8 +4,9 @@ import reqwest  from 'reqwest';
 
 var KoolActions = {
   init() {
-    var rqw = reqwest({
-      url: '/data.json'
+//    return;
+   reqwest({
+      url: '/mock/data.json'
       , method: 'get'
       , data: [{name: 'test', value: 1}]
       , success: function(resp) {
@@ -14,16 +15,8 @@ var KoolActions = {
           data: resp
         });
       }
-    })
-      .then(function(resp) {
-      })
-      .fail(function(req, msg) {
-      })
-      .always(function(resp) {
+    });
 
-        console.log(resp)
-
-      });
   },
   addToKart(item) {
     AppDispatcher.handleViewAction({

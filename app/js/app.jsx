@@ -21,8 +21,7 @@ var KartApp = React.createClass({
     )
   }
 });
-
-React.renderComponent(
+React.render(
   <KartApp />,
   document.getElementById('kartApp')
 );

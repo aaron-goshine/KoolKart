@@ -1,0 +1,76 @@
+[
+  {
+    "id": "id01",
+    "name": "Cold Beer",
+    "title": "Nameless Lager",
+    "value": "5.60",
+    "imageName": "images/beer.png",
+    "prodDesc": "Perfect Description"
+  },
+  {
+    "id": "id02",
+    "name": " Empty Box",
+    "title": " Empty Box",
+    "value": "9.60",
+    "imageName": "/images/empty.png",
+    "prodDesc": "Less is more"
+  },
+  {
+    "id": "id03",
+    "name": " Good Gears",
+    "title": " Good Gears",
+    "value": "101.60",
+    "imageName": "/images/gears.png",
+    "prodDesc": "Get in the right gear"
+  },
+  {
+    "id": "id04",
+    "name": "chemical",
+    "title": "chemical",
+    "value": "1000.60",
+    "imageName": "/images/chemical.png",
+    "prodDesc": "Mixable chemical "
+  },
+  {
+    "id": "id05",
+    "name": " Perfect Gift",
+    "title": " Perfect Gift",
+    "value": "1.60",
+    "imageName": "/images/gift.png",
+    "prodDesc": "A perfect Gift is what you expected"
+  },
+  {
+    "id": "id06",
+    "name": "Nice Piggy",
+    "title": "Piggy",
+    "value": "120.00",
+    "imageName": "/images/pig.png",
+    "prodDesc": "This Piggy when to the market"
+  },
+  {
+    "id": "id07",
+    "name": "Compass and square",
+    "title": "Piggy",
+    "value": "33.00",
+    "imageName": "/images/compass.png",
+    "prodDesc": "working tool"
+  }
+,
+  {
+    "id": "id08",
+    "name": "Man Bag",
+    "title": "Piggy",
+    "value": "120.00",
+    "imageName": "/images/manbag.png",
+    "prodDesc": "Great leather Man bag"
+  }
+,
+  {
+    "id": "id09",
+    "name": "Raspberry",
+    "title": "Piggy",
+    "value": "120.00",
+    "imageName": "/images/raspberry.png",
+    "prodDesc": "Read to eat raspberry"
+  }
+]

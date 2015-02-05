@@ -1,14 +1,13 @@
 import AppDispatcher  from '../dispatcher/AppDispatcher' ;
 import {EventEmitter} from 'events';
 import KartConstants from '../constants/KartConstants';
-import merge from 'react/lib/merge';
-
+import _ from 'lodash';
 //-- mock data
 import items from '../mock/items.js';
 var CHANGE_EVENT = 'change';
 var _Items = [];
 
-var KartStore = merge(EventEmitter.prototype, {
+var KartStore = _.assign(new EventEmitter, {
   getAll() {
     return _Items;
   },
@@ -64,10 +63,10 @@ AppDispatcher.register((payload) => {
     case KartConstants.ADD_TO_KART:
       KartStore.addItem(action.item);
       break;
-    default:
     case KartConstants.REMOVE_FROM_KART:
       KartStore.removeItem(action.id);
       break;
+    default:
       return true;
   }
 

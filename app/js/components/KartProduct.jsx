@@ -10,7 +10,7 @@ var KoolProduct = React.createClass({
           <li>Price : {"£ " + this.props.item.value}</li>
           <li>({this.props.item.quantity}){this.props.item.name}</li>
         </ul>
-        <a className="btn-link" onClick={this._onClick}>Remove item</a>
+        <a className="btn-link-custom" onClick={this._onClick}>Remove item</a>
       </div>
     );
   },

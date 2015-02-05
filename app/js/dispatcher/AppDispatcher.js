@@ -1,7 +1,7 @@
 import {Dispatcher} from 'flux';
-import copyProperties from 'react/lib/copyProperties';
+import _ from 'lodash';
 
-var AppDispatcher = copyProperties(new Dispatcher(), {
+var AppDispatcher = _.assign(new Dispatcher(), {
 
   handleViewAction(action) {
     this.dispatch({

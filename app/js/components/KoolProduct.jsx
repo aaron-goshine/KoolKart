@@ -4,27 +4,22 @@ import format from 'string-format';
 import KoolStore from '../stores/KoolStore';
 
 var KoolProduct = React.createClass({
-  getInitialState() {
-    return {}
-  },
-  componentWillReceiveProps(props) {
-    this.setState(props.item);
-  },
   render() {
+    var unitData = this.props.unitData;
     return (
-      <div id={this.state.id} title={this.state.title} {...this.props}>
-        <img src={this.state.imageName}/>
+      <div id={ unitData.id} title={unitData.title} className={this.props.className}>
+        <img src={unitData.imageName}/>
         <ul>
-          <li>Price : {"£ " + this.state.value}</li>
-          <li>{this.state.name}</li>
-          <li>{this.state.prodDesc}</li>
+          <li>Price : {"£ " + unitData.value}</li>
+          <li>{unitData.name}</li>
+          <li>{unitData.prodDesc}</li>
         </ul>
         <button className="btn btn-default" onClick={this._onClick}>Add to list </button>
       </div>
     );
   },
   _onClick() {
-    var item = KoolStore.getItemById(this.state.id);
+    var item = KoolStore.getItemById(this.props.unitData.id);
     KartActionCreator.addToKart(item);
   }
 });

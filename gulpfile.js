@@ -40,9 +40,15 @@ gulp.task('html', function() {
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('fonts', function() {
+gulp.task('assest', function() {
   gulp.src(['./app/fonts/*'])
     .pipe(gulp.dest('dist/fonts/'));
+
+  gulp.src(['./app/images/*'])
+    .pipe(gulp.dest('dist/images/'));
+
+  gulp.src(['./app/mock/*'])
+    .pipe(gulp.dest('dist/mock/'));
 });
 
 
@@ -114,6 +120,6 @@ gulp.task('default',
     'watchLess',
     'watchScript',
     'watchHtml',
-    'fonts'
+    'assest'
   ]);
 

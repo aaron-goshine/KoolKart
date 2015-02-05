@@ -20,16 +20,17 @@ var KoolProductPanel = React.createClass({
           <h2>Inspired by Your Shopping Trends</h2>
           <p>Your Recently Viewed Items and Featured Recommendations</p>
         </header>
-        {this._renderItem(this.state.items)}
+        {this._renderItems(this.state.items)}
       </div>
     )
   },
-  _renderItem(items) {
+  _renderItems(items) {
+
     var table = _.chunk(items, 3);
     return table.map(item => {
       return <div className="row"> {
         item.map(unit => {
-          return <KoolProduct  className="col-xs-4 product-unit" item={unit} />;
+          return <KoolProduct  className="col-xs-4 product-unit" unitData={unit} />;
         })}</div>
     })
   },
@@ -38,7 +39,6 @@ var KoolProductPanel = React.createClass({
     this.setState(this._getStateFromStore());
   },
   _getStateFromStore() {
-    console.log(KoolStore.getAll());
     return {
       items: KoolStore.getAll()
     }
