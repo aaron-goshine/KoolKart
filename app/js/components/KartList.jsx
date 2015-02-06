@@ -1,6 +1,8 @@
 import React from 'react'
 import KartStore from '../stores/KartStore';
 import KartProduct from '../components/kartProduct';
+import format from 'string-format';
+
 var KartList = React.createClass({
   getInitialState() {
     return this._getStateFromStore();
@@ -24,12 +26,7 @@ var KartList = React.createClass({
     )
   },
   _getCheckoutButton() {
-    return <div>
-      <button className="btn btn-success" onClick={this._onClick}>Proceed to checkout</button>
-      <p>20%
-        <a href="https://www.gov.uk/business-tax/vat">vat</a>
-      </p>
-    </div>
+    return <button className="btn btn-success" onClick={this._onClick}>Proceed to checkout</button>
   },
   _getConsole() {
     return <div className="total-console">

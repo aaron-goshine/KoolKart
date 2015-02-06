@@ -24,7 +24,13 @@ var KoolActions = {
       item: item
     });
   },
-  removeFromKart(id) {
+  removeItemFromKart(id) {
+    AppDispatcher.handleViewAction({
+      actionType: KartConstants.REMOVE_ITEM_FROM_KART,
+      id: id
+    });
+  },
+  removeAllItemsFromKart(id) {
     AppDispatcher.handleViewAction({
       actionType: KartConstants.REMOVE_FROM_KART,
       id: id

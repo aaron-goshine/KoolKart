@@ -44,6 +44,13 @@ var KartStore = _.assign(new EventEmitter, {
       }
     }
   },
+  removeAllItem(id) {
+    for (var i = 0; i < _Items.length; i++) {
+      if (_Items[i].id === id) {
+        _Items.splice(i, 1)
+      }
+    }
+  },
   emitChange() {
     this.emit(CHANGE_EVENT);
   },
@@ -62,8 +69,11 @@ AppDispatcher.register((payload) => {
     case KartConstants.ADD_TO_KART:
       KartStore.addItem(action.item);
       break;
-    case KartConstants.REMOVE_FROM_KART:
+    case KartConstants.REMOVE_ITEM_FROM_KART:
       KartStore.removeItem(action.id);
+      break;
+    case KartConstants.REMOVE_FROM_KART:
+      KartStore.removeAllItem(action.id);
       break;
     default:
       return true;
