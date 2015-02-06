@@ -2,6 +2,7 @@ import React from 'react'
 import KartStore from '../stores/KartStore';
 import KartProduct from '../components/kartProduct';
 import 'string-format';
+import numbr from 'numbr'
 
 var KartList = React.createClass({
   getInitialState() {
@@ -31,7 +32,7 @@ var KartList = React.createClass({
   _getConsole() {
     return <div className="well panel panel-success ">
       <p>{"Subtotal ({} item)".format(this.state.numberOfItems)}</p>
-      <h2 className="panel-heading">{"£{}".format(this.state.total) }</h2>
+      <h2 className="panel-heading">{"{}".format(numbr(this.state.total).format('£0,0.00')) }</h2>
     </div>
   },
   _renderItem() {

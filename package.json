@@ -27,6 +27,7 @@
     "gutil": "^1.6.0",
     "keymirror": "^0.1.1",
     "lodash": "^3.0.1",
+    "numbr": "0.0.6",
     "react": "^0.12.2",
     "reactify": "^1.0.0",
     "reqwest": "^1.1.5",
