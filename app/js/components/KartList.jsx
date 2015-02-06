@@ -3,6 +3,8 @@ import KartStore from '../stores/KartStore';
 import KartProduct from '../components/kartProduct';
 import 'string-format';
 import numbr from 'numbr'
+import  {ModalTrigger,Modal} from 'react-bootstrap'
+
 
 var KartList = React.createClass({
   getInitialState() {
@@ -27,7 +29,11 @@ var KartList = React.createClass({
     )
   },
   _getCheckoutButton() {
-    return <button className="btn btn-success" onClick={this._onClick}>Proceed to checkout</button>
+    return (
+      <ModalTrigger modal={this._getModal()} container={this}>
+        <button className="btn btn-success" onClick={this._onClick}>Proceed to checkout</button>
+      </ModalTrigger>
+    )
   },
   _getConsole() {
     return <div className="well panel panel-success ">
@@ -42,6 +48,15 @@ var KartList = React.createClass({
   },
   _onChange() {
     this.setState(this._getStateFromStore());
+  },
+  _getModal() {
+    return (
+      <Modal {...this.props} title='Your purchase was successful' animation>
+        <div className="panel">
+          <h3 className="panel-heading">Thank You</h3>
+        </div>
+      </Modal>
+    )
   },
   _getStateFromStore() {
     function numOfItems() {
@@ -61,5 +76,5 @@ var KartList = React.createClass({
   }
 });
 
-export default KartList
+export default KartList;
 

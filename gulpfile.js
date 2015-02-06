@@ -9,10 +9,6 @@ var source = require("vinyl-source-stream");
 var browserify = require('browserify');
 var to5ify = require('6to5ify');
 
-function swallowError(error) {
-  console.log(error.toString());
-  this.emit('end');
-}
 
 gulp.task('connectServer', plugins.serve({
   root: 'dist',
@@ -60,7 +56,6 @@ gulp.task('watchHtml', function () {
 
 gulp.task('less', function () {
   gulp.src(['app/css/less/*.less', 'app/css/**/*.css'])
-    .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.concat('styles.css'))
     .pipe(plugins.less())
@@ -79,17 +74,19 @@ gulp.task('scripts', function () {
     debug: true,
     extensions: ['.js', '.jsx', '.json']
   });
+
+  bundle.on('error', plugins.util.log.bind(plugins.util, 'Browserify Error'));
   bundle.transform(reactify);
   bundle.transform(to5ify);
   return bundle.bundle()
-    .pipe(plugins.plumber())
+    .on('error', plugins.util.log.bind(plugins.util, 'Browserify Error'))
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./dist/js/'));
 });
 
 gulp.task('watchScript', function () {
   plugins.watch('./app/js/**', function () {
-    gulp.start('scripts');
+    gulp.start(['scripts', 'test-unit']);
   })
 });
 
@@ -107,6 +104,8 @@ gulp.task('cssmin', function () {
     .pipe(plugins.rename({suffix: '.min'}))
     .pipe(gulp.dest('app/css'));
 });
+
+gulp.task('test-unit', plugins.shell.task(['npm test']));
 
 gulp.task('default',
   [

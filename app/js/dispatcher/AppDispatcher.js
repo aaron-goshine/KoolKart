@@ -1,5 +1,5 @@
-import {Dispatcher} from 'flux';
-import _ from 'lodash';
+var Dispatcher = require('flux').Dispatcher;
+var _ = require('lodash');
 
 var AppDispatcher = _.assign(new Dispatcher(), {
 
@@ -18,4 +18,4 @@ var AppDispatcher = _.assign(new Dispatcher(), {
 
 });
 
-export default AppDispatcher;
+module.exports = AppDispatcher;

@@ -1,7 +1,8 @@
-import AppDispatcher  from '../dispatcher/AppDispatcher' ;
-import {EventEmitter} from 'events';
-import KartConstants from '../constants/KartConstants';
-import _ from 'lodash';
+var AppDispatcher = require('../dispatcher/AppDispatcher');
+var EventEmitter = require('events').EventEmitter;
+var KartConstants = require('../constants/KartConstants');
+
+var _ = require('lodash');
 
 var CHANGE_EVENT = 'change';
 var _Items = [];
@@ -20,7 +21,6 @@ var KoolStore = _.assign(new EventEmitter, {
   addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
   },
-
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
