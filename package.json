@@ -29,6 +29,7 @@
     "lodash": "^3.0.1",
     "numbr": "0.0.6",
     "react": "^0.12.2",
+    "react-bootstrap": "^0.13.3",
     "reactify": "^1.0.0",
     "reqwest": "^1.1.5",
     "string-format": "^0.2.1",
