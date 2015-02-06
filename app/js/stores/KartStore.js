@@ -3,7 +3,6 @@ import {EventEmitter} from 'events';
 import KartConstants from '../constants/KartConstants';
 import _ from 'lodash';
 //-- mock data
-import items from '../mock/items.js';
 var CHANGE_EVENT = 'change';
 var _Items = [];
 

@@ -20,27 +20,27 @@ gulp.task('connectServer', plugins.serve({
   middleware: require('connect-livereload')({port: livereloadPort})
 }));
 
-gulp.task("browser", ['connectServer'], function() {
+gulp.task("browser", ['connectServer'], function () {
   gulp.src("./dist/index.html")
     .pipe(plugins.open("", {url: "http://localhost:" + serverPort}));
 });
 
-gulp.task('liveServer', function() {
+gulp.task('liveServer', function () {
   plugins.livereload.listen(livereloadPort);
 });
 
-gulp.task('watch', function() {
-  plugins.watch(['./dist/*.html', './dist/css/*.css', './dist/js/*.js', './dist/images/**/*'], function() {
+gulp.task('watch', function () {
+  plugins.watch(['./dist/*.html', './dist/css/*.css', './dist/js/*.js', './dist/images/**/*'], function () {
     plugins.livereload.changed("file", livereloadPort);
   });
 });
 
-gulp.task('html', function() {
+gulp.task('html', function () {
   gulp.src(['./index.html'])
     .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('assest', function() {
+gulp.task('assets', function () {
   gulp.src(['./app/fonts/*'])
     .pipe(gulp.dest('dist/fonts/'));
 
@@ -52,59 +52,56 @@ gulp.task('assest', function() {
 });
 
 
-gulp.task('watchHtml', function() {
-  plugins.watch(['./index.html'], function() {
+gulp.task('watchHtml', function () {
+  plugins.watch(['./index.html'], function () {
     gulp.start('html');
   })
 });
 
-gulp.task('less', function() {
+gulp.task('less', function () {
   gulp.src(['app/css/less/*.less', 'app/css/**/*.css'])
+    .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.concat('styles.css'))
-    .on('error', swallowError)
     .pipe(plugins.less())
-    .on('error', swallowError)
     .pipe(plugins.sourcemaps.write('maps'))
     .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('watchLess', function() {
-  plugins.watch(['./app/css/less/*.less', './app/css/**/*.css'], function() {
+gulp.task('watchLess', function () {
+  plugins.watch(['./app/css/less/*.less', './app/css/**/*.css'], function () {
     gulp.start('less');
   })
 });
 
-gulp.task('scripts', function() {
+gulp.task('scripts', function () {
   var bundle = browserify('./app/js/app.jsx', {
     debug: true,
     extensions: ['.js', '.jsx', '.json']
   });
-  bundle.on('error', swallowError);
   bundle.transform(reactify);
-  bundle.on('error', swallowError);
   bundle.transform(to5ify);
-  bundle.on('error', swallowError);
   return bundle.bundle()
+    .pipe(plugins.plumber())
     .pipe(source('bundle.js'))
     .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('watchScript', function() {
-  plugins.watch('./app/js/**', function() {
+gulp.task('watchScript', function () {
+  plugins.watch('./app/js/**', function () {
     gulp.start('scripts');
   })
 });
 
 //Minify javascript files
-gulp.task('uglify', function() {
+gulp.task('uglify', function () {
   gulp.src(['app/js/*.js', '!app/js/*.min.js'])
     .pipe(plugins.uglify())
     .pipe(plugins.rename({suffix: '.min'}))
     .pipe(gulp.dest('app/js'))
 });
 
-gulp.task('cssmin', function() {
+gulp.task('cssmin', function () {
   gulp.src(['app/css/*.css', '!css/*.min.css'])
     .pipe(plugins.cssmin())
     .pipe(plugins.rename({suffix: '.min'}))
@@ -118,8 +115,11 @@ gulp.task('default',
     'liveServer',
     'watch',
     'watchLess',
+    'less',
     'watchScript',
+    'scripts',
     'watchHtml',
-    'assest'
+    'html',
+    'assets'
   ]);
 
