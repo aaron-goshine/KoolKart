@@ -4,7 +4,6 @@ import reqwest  from 'reqwest';
 
 var KoolActions = {
   init() {
-//    return;
    reqwest({
       url: '/mock/data.json'
       , method: 'get'

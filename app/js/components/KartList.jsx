@@ -1,7 +1,7 @@
 import React from 'react'
 import KartStore from '../stores/KartStore';
 import KartProduct from '../components/kartProduct';
-import format from 'string-format';
+import 'string-format';
 
 var KartList = React.createClass({
   getInitialState() {
@@ -18,7 +18,7 @@ var KartList = React.createClass({
       <div className="kart-list">
         {(this.state.numberOfItems > 0 ) ? this._getConsole() : ""}
         <div>
-        {this._renderItem(this.state.items)}
+        {this._renderItem()}
         </div>
         {(this.state.numberOfItems > 0 ) ? this._getCheckoutButton() : ""}
 
@@ -29,12 +29,13 @@ var KartList = React.createClass({
     return <button className="btn btn-success" onClick={this._onClick}>Proceed to checkout</button>
   },
   _getConsole() {
-    return <div className="total-console">
-     {"Subtotal ( " + this.state.numberOfItems + " item ) :" + " £" + this.state.total }
+    return <div className="well panel panel-success ">
+      <p>{"Subtotal ({} item)".format(this.state.numberOfItems)}</p>
+      <h2 className="panel-heading">{"£{}".format(this.state.total) }</h2>
     </div>
   },
-  _renderItem(items) {
-    return items.map(item => {
+  _renderItem() {
+    return this.state.items.map(item => {
       return <KartProduct item={item} />
     })
   },
@@ -42,7 +43,6 @@ var KartList = React.createClass({
     this.setState(this._getStateFromStore());
   },
   _getStateFromStore() {
-
     function numOfItems() {
       var items = KartStore.getAll(),
         num = 0;
@@ -50,7 +50,6 @@ var KartList = React.createClass({
         num += Number(items[i].quantity);
       }
       return num;
-
     }
 
     return {
