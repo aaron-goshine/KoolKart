@@ -3,8 +3,6 @@
 *properties
     id, id01, id02, id03, id04, id05, id06, imageName, name, prodDesc, title, 
     value
-*/
-/**
 *jslint devel: false, bitwise: false, regexp: false, browser: true, confusion: false, undef: false, node: false, continue: false, unparam: false, rhino: false, debug: false, sloppy: false, widget: false, eqeq: false, sub: false, windows: false,es5: true, vars: true, evil: false, white: true, passfail: false, forin: true,css: false, newcap: false, cap: false, safe: false, nomen: false, on: false, adsafe: false, plusplus: false, fragment: false, indent: 4 
 */
 
